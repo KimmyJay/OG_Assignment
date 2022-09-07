@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="OG 과제"/>
+    <title>{% block title %}{% endblock %} | 오픈 갤러리 과제</title>
+    <!-- CSS -->
+    {% comment %} <link href="{% static 'style/main.css' %}" rel="stylesheet"> {% endcomment %}
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    {% block content %}
+
+
+    {% endblock %}
+</body>
+</html>

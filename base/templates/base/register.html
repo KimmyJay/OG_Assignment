@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}
+    로그인 / 회원가입
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'style/login.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class='register-container'>
+        <form class='register-wrap' method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <label>닉네임: </label>
+            <input type='text' name="nickname" placeholder="닉네임">
+            <label>비밀번호: </label>
+            <input type='password' name='password' placeholder="비밀번호">
+            <label>비밀번호 재입력: </label>
+            <input type='password' name='password2' placeholder="비밀번호 재입력">
+            <input type='submit' name='login'>
+            <label>이미 계정이 있으신가요? <a href='{% url 'loginpage' %}'>로그인</a></label>
+        </form>
+    </div>
+  
+{% endblock content %}
