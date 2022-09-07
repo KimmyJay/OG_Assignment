@@ -1,7 +1,33 @@
 {% extends 'main.html' %}
+{% load static %}
+
+{% block title %}
+    홈
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'style/home.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 {% block content %}
+    <div class='pages-container'>
+        <div class='customer-page'>
+            <h1>고객 페이지</h1>
+            <a href='/artistapplypage'>작가 등록 신청</a>
+        </div>
 
-<h1>고객 페이지</h1>
-
+        <div class='admin-page'>
+            <h1>관리자 페이지</h1>
+            <a href='/aristapprovepage'>작가 등록 신청 내역 조회</a>
+        
+        </div>
+        <div class='artist-page'>
+            <h1>작가 페이지</h1>
+            <a href='/dashboard'>대시보드</a>
+            <a href='/dashboard'>작품 등록</a>
+            <a href='/dashboard'>전시 등록</a>
+        
+        </div>
+    </div>
 {% endblock content %}

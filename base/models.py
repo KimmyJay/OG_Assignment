@@ -27,17 +27,14 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     nickname = models.CharField("닉네임", max_length=10, unique=True)
     email = models.EmailField("이메일", max_length=50, null=True)
-    gender = models.CharField("성별", max_length=4, choices=[('남자', 'Male'), ('여자', 'Female')], null=True)
+    gender = models.CharField("성별", max_length=4, choices=[('남', 'Male'), ('여', 'Female')], null=True)
     password = models.CharField("비밀번호", max_length=256)
     phone_number = PhoneNumberField('전화번호', null=True)
     birth_date = models.DateTimeField("생일", null=True)
     join_date = models.DateTimeField("가입일", auto_now_add=True)
-    user_type = models.ForeignKey("UserType", on_delete=models.SET_NULL, null=True)
-    # 활성화 여부
     is_active = models.BooleanField("계정 활성화 여부", default=True)
-    # 관리자 권한 여부
     is_admin = models.BooleanField("관리자 권한", default=False)
-
+    is_artist = models.BooleanField("작가 계정 여부", default=False)
     class Meta:
         db_table = "users"
 
@@ -69,12 +66,18 @@ class User(AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
 
-
-class UserType(models.Model):
-    user_type = models.CharField("유저 타입", max_length=50)
-
+class ArtistApplication(models.Model):
+    name = models.CharField("성함", max_length=16, unique=True)
+    email = models.EmailField("이메일", max_length=50)
+    gender = models.CharField("성별", max_length=4, choices=[('남', 'Male'), ('여', 'Female')])
+    phone_number = PhoneNumberField('연락처')
+    date_of_birth = models.DateTimeField("생년월일")
+    date_applied = models.DateTimeField("신청일", auto_now_add=True)
+    is_reviewed = models.BooleanField("검토 상태", default=False)
     class Meta:
-        db_table = "user_types"
+        db_table = "artist_applications"
 
     def __str__(self):
-        return f"{self.user_type}"
+        return f"[성함]: {self.name}"
+
+

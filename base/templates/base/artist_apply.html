@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}
+    작가 목록 조회
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'style/artist_apply.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class='artist-apply-container'>
+    <form class='artist-apply-wrap' method="POST" action="{% url 'artist_apply' %}">
+        {% csrf_token %}
+        <h1>작가 등록 신청</h1>
+        <label for="name">성함: </label>
+        <input type='text' name="name" placeholder="성함">
+        <label for="gender">성별: </label>
+        <select name="gender" id="gender-select">
+            <option value="">--성별을 선택하세요.--</option>
+            <option value="남">남</option>
+            <option value="여">여</option>
+        </select>
+        <label for="date-of-birth">생년월일: </label>
+        <input type="date" id="date-of-birth" name="date-of-birth" min="1900-01-01">
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email">
+        <label for="phone">연락처: </label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+        <input type='submit' name='apply' value="신청">
+
+    </form>
+</div>
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {dd = '0' + dd;}
+
+    if (mm < 10) {mm = '0' + mm;} 
+        
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("date-of-birth").setAttribute("value", today);
+    document.getElementById("date-of-birth").setAttribute("max", today);
+</script>
+
+{% endblock content %}

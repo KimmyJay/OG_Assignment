@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block css %}
-    <link href="{% static 'style/login.css' %}" rel="stylesheet">
+    <link href="{% static 'style/login_register.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -17,8 +17,8 @@
             <input type='text' name="nickname" placeholder="닉네임">
             <label>비밀번호: </label>
             <input type='password' name='password' placeholder="비밀번호">
-            <input type='submit' name='login'>
-            <label>계정이 없으신가요? <a href={% url 'registerpage' %}'>회원가입</a></label>
+            <input type='submit' name='login' value="로그인">
+            <label>계정이 없으신가요? <a href='{% url 'register_page' %}'>회원가입</a></label>
 
         </form>
     </div>

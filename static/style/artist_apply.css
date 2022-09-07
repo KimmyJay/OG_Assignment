@@ -1,0 +1,15 @@
+.artist-apply-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 350px;
+    height: 350px;
+    border: solid black;
+    padding: 10px;
+}
+
+.artist-apply-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
