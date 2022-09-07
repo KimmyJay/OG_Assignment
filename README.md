@@ -1,1 +1,1 @@
-# OG_Assignment
+# 오픈 갤러리 코딩과제
